@@ -1,0 +1,36 @@
+---
+
+## Check
+
+- name: Check variables
+  ansible.builtin.assert:
+    that:
+      - orbital_sync_primary_host    is defined and orbital_sync_primary_host
+      - orbital_sync_secondary_hosts is defined
+      - orbital_sync_secondary_hosts | length > 0
+
+## Init
+
+- name: Ensure project directories exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - "{{ docker_project_path }}"
+  tags: ["init"]
+
+## Configure
+
+- name: Template docker-compose.yml
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ docker_project_path }}/docker-compose.yml"
+    mode: '0644'
+    validate: "{{ docker_cli }} compose -f %s config"
+    backup: true
+
+## Run
+
+- name: Start app
+  ansible.builtin.include_role: { name: djuuu.docker_project, tasks_from: compose-up }

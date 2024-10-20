@@ -1,0 +1,25 @@
+---
+
+# Docker project variables
+
+orbital_sync_project_name: orbital-sync
+
+
+# Orbital Sync project variables
+
+# mattwebbio/orbital-sync image version
+orbital_sync_version: latest
+
+# Primary host configuration is pulled from (inventory hostname)
+orbital_sync_primary_host:
+# Primary hosts configuration is injected into (inventory hostnames)
+orbital_sync_secondary_hosts: []
+
+# Sync interval
+orbital_sync_interval_minutes: 60
+
+# Reject invalid TLS certificates
+orbital_sync_tls_reject_unauthorized: 0
+
+# Run only once
+orbital_sync_run_once: false
