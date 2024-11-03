@@ -11,9 +11,16 @@ orbital_sync_project_name: orbital-sync
 orbital_sync_version: latest
 
 # Primary host configuration is pulled from (inventory hostname)
-orbital_sync_primary_host:
-# Primary hosts configuration is injected into (inventory hostnames)
-orbital_sync_secondary_hosts: []
+orbital_sync_primary_pihole:
+#  base_url: "https://pihole.example.net"
+#  password: "p@55w0rd"
+
+# Secondary hosts configuration is injected into (inventory hostnames)
+orbital_sync_secondary_piholes:
+#  - base_url: "https://pihole.fallback1.example.net"
+#    password: "p@55w0rd1"
+#  - base_url: "https://pihole.fallback2.example.net"
+#    password: "p@55w0rd2"
 
 # Sync interval
 orbital_sync_interval_minutes: 60

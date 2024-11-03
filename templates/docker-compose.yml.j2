@@ -17,12 +17,12 @@ services:
     {{ docker_project_compose_service_additional_options | indent(4) }}
 
     environment:
-      PRIMARY_HOST_BASE_URL: 'https://pi-hole.{{ hostvars[orbital_sync_primary_host].local_base_domain }}'
-      PRIMARY_HOST_PASSWORD: '{{ hostvars[orbital_sync_primary_host].pihole_webpassword }}'
+      PRIMARY_HOST_BASE_URL: '{{ orbital_sync_primary_pihole.base_url }}'
+      PRIMARY_HOST_PASSWORD: '{{ orbital_sync_primary_pihole.password }}'
 
-      {% for item in orbital_sync_secondary_hosts %}
-      SECONDARY_HOST_{{ loop.index }}_BASE_URL: 'https://pi-hole.{{ hostvars[item].local_base_domain }}'
-      SECONDARY_HOST_{{ loop.index }}_PASSWORD: '{{ hostvars[item].pihole_webpassword }}'
+      {% for item in orbital_sync_secondary_piholes %}
+      SECONDARY_HOST_{{ loop.index }}_BASE_URL: '{{ item.base_url }}'
+      SECONDARY_HOST_{{ loop.index }}_PASSWORD: '{{ item.password }}'
       {% endfor %}
 
       INTERVAL_MINUTES: {{ orbital_sync_interval_minutes | default(30) }}

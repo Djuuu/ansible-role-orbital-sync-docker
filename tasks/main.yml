@@ -5,9 +5,13 @@
 - name: Check variables
   ansible.builtin.assert:
     that:
-      - orbital_sync_primary_host    is defined and orbital_sync_primary_host
-      - orbital_sync_secondary_hosts is defined
-      - orbital_sync_secondary_hosts | length > 0
+      - orbital_sync_primary_pihole is defined and orbital_sync_primary_pihole
+      - orbital_sync_primary_pihole.base_url is defined and orbital_sync_primary_pihole.base_url
+      - orbital_sync_primary_pihole.password is defined and orbital_sync_primary_pihole.password
+      - orbital_sync_secondary_piholes is defined
+      - orbital_sync_secondary_piholes | length > 0
+      - orbital_sync_secondary_piholes[0].base_url is defined and orbital_sync_secondary_piholes[0].base_url
+      - orbital_sync_secondary_piholes[0].password is defined and orbital_sync_secondary_piholes[0].password
 
 ## Init
 
