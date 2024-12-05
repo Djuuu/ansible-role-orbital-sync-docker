@@ -10,7 +10,7 @@ services:
     # https://github.com/mattwebbio/orbital-sync
     image: mattwebbio/orbital-sync:{{ orbital_sync_version }}
     container_name: {{ docker_project_slug }}
-    restart: always
+    restart: unless-stopped
 
     network_mode: host
 
